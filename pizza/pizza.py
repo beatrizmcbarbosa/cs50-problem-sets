@@ -19,8 +19,8 @@ def grid():
             return(tabulate(reader, headers="firstrow", tablefmt="grid"))
     # If file does not exist, raise FileNotFoundError and sys.exit
     except FileNotFoundError:
-        sys.exit
-
+        sys.exit("File not found")
+        
 """
 # Tabulate documentation
 >>> table = [["Sun",696000,1989100000],["Earth",6371,5973.6],
