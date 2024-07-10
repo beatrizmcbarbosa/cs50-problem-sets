@@ -6,24 +6,26 @@ def main():
         sys.exit("Too few or many arguments.")
     # Else scourgify
     else:
-        print(scourgify())
+        scourgify()
 
 def scourgify():
     # Open file and read "name" and "house"
     list = []
-    with open(sys.argv[1], "r") as file:
-        reader = csv.DictReader(file)
-        try:
-            for name, house in reader:
-                first, last = name.split(",")
-                list.append({"first": first, "last": last, "house": house})
+    try:
+        with open(sys.argv[1], "r") as file:
+            reader = csv.DictReader(file)
+            for row in reader:
                 # Split "name" into "first" and "last" and write that and "house" into argv[3]
-                with open(sys.argv[3], "a") as newfile:
-                    writer = csv.DictWriter(newfile, fieldnames=["first", "last", "house"])
-                    writer.writerow({"first": first, "last": last, "house": house})
-        # If not readable, exit
-        except FileNotFoundError:
-            sys.exit("File not readable")
+                last, first = row["name"].split(", ")
+                list.append({"first": first, "last": last, "house": row["house"]})
+    except FileNotFoundError:
+        sys.exit("File not readable")
+    # Write new file
+    with open(sys.argv[2], "w") as newfile:
+        writer = csv.DictWriter(newfile, fieldnames=["first", "last", "house"])
+        writer.writeheader()
+        for row in list:
+            writer.writerow(row)
 
 
 if __name__ == "__main__":
