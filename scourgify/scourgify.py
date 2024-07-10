@@ -19,7 +19,7 @@ def scourgify():
                 list.append({"first": first, "last": last, "house": house})
                 # Split "name" into "first" and "last" and write that and "house" into argv[3]
                 with open(sys.argv[3], "a") as newfile:
-                    writer = csv.DictWriter(newfile, fieldnames["first", "last", "house"])
+                    writer = csv.DictWriter(newfile, fieldnames=["first", "last", "house"])
                     writer.writerow({"first": first, "last": last, "house": house})
         # If not readable, exit
         except FileNotFoundError:
