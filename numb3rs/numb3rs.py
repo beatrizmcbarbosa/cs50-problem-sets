@@ -7,7 +7,12 @@ def main():
 
 
 def validate(ip):
-    ...
+    # Typical format #.#.#.#, each # is a number between 0 and 255 (not included)
+    match = r""
+    if match:
+        return True
+    else:
+        return false
 
 
 ...
