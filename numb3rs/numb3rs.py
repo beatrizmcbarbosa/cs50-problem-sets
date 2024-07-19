@@ -12,7 +12,7 @@ def validate(ip):
     if match:
         return True
     else:
-        return false
+        return False
 
 
 ...
