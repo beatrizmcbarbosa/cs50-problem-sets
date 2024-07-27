@@ -27,13 +27,25 @@ def convert(s):
 
         # if it is AM, then result is the same. If it is PM, result is number + 12
         if matches.group(3) == "AM":
-            hoursFrom = int(matches.group(1))
+            if int(matches.group(1)) == 12:
+                hoursFrom = 00
+            else:
+                hoursFrom = int(matches.group(1))
         else:
-            hoursFrom = int(matches.group(1)) + 12
+            if int(matches.group(1)) == 12:
+                hoursFrom = 12
+            else:
+                hoursFrom = int(matches.group(1)) + 12
         if matches.group(6) == "AM":
-            hoursTo = int(matches.group(4))
+            if int(matches.group(4)) == 12:
+                hoursTo = 00
+            else:
+                hoursTo = int(matches.group(4))
         else:
-            hoursTo = int(matches.group(4)) + 12
+            if int(matches.group(4)) == 12:
+                hoursTo = 12
+            else:
+                hoursTo = int(matches.group(4)) + 12
     else:
         raise(ValueError)
     #print(f"{n:02}")
