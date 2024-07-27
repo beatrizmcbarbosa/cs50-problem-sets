@@ -5,12 +5,8 @@ def main():
 
 
 def count(s):
-    count = 0
-    if match := re.findall(r"\bum*", s):
-        for match in s:
-            count += 1
-        return count
-
+    if match := re.findall(r"\bum*", s, re.IGNORECASE):
+        return len(match)
 
 if __name__ == "__main__":
     main()
