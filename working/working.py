@@ -11,11 +11,17 @@ def convert(s):
     if matches:= re.search(r"(\d{1,2})\:?(\d{1,2})? (AM|PM) to (\d{1,2})\:?(\d{1,2})? (AM|PM)", s):
         # separate hours from minutes, minutes will be the same. Group 2 and Group 5
         if matches.group(2) is not None:
-            minutesFrom = int(matches.group(2))
+            if int(matches.group(2)) <= 59:
+                minutesFrom = int(matches.group(2))
+            else:
+                raise(ValueError)
         else:
             minutesFrom = 00
         if matches.group(5) is not None:
-            minutesTo = int(matches.group(5))
+            if int(matches.group(5)) <= 59:
+                minutesTo = int(matches.group(5))
+            else:
+                raise(ValueError)
         else:
             minutesTo = 00
 
@@ -28,6 +34,8 @@ def convert(s):
             hoursTo = int(matches.group(4))
         else:
             hoursTo = int(matches.group(4)) + 12
+    else:
+        raise(ValueError)
     #print(f"{n:02}")
     return(f"{hoursFrom:02}:{minutesFrom:02} to {hoursTo:02}:{minutesTo:02}")
 
