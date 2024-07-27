@@ -10,8 +10,14 @@ def convert(s):
     # 9 AM to 5 PM
     if matches:= re.search(r"(\d{1,2})\:?(\d{1,2})? (AM|PM) to (\d{1,2})\:?(\d{1,2})? (AM|PM)", s):
         # separate hours from minutes, minutes will be the same. Group 2 and Group 5
-        minutesFrom = int(matches.group(2))
-        minutesTo = int(matches.group(5))
+        if matches.group(2) is not None:
+            minutesFrom = int(matches.group(2))
+        else:
+            minutesFrom = 00
+        if matches.group(5) is not None:
+            minutesTo = int(matches.group(5))
+        else:
+            minutesTo = 00
 
         # if it is AM, then result is the same. If it is PM, result is number + 12
         if matches.group(3) == "AM":
