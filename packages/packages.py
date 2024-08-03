@@ -19,5 +19,7 @@ def main():
     ]
     for package in packages:
         print(f"{package} costs €{package.calculate_cost(cost_per_kg=2)}")
+
+
 if __name__ == "__main__":
     main()
