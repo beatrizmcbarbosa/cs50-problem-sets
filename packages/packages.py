@@ -8,13 +8,16 @@ class Package:
     def __str__(self):
         return f"Package {self.number}: {self.sender} to {self.recipient}, {self.weight}kg"
     
-    
+    def calculate_cost(self, cost_per_kg):
+        return self.weight * cost_per_kg
+        
+        
 def main():
     packages = [
         Package(number=1, sender="Alice", recipient="Bob", weight=10),
         Package(number=2, sender="Bob", recipient="Charlie", weight=5)
     ]
     for package in packages:
-        print(package)
+        print(f"{package} costs €{package.calculate_cost(cost_per_kg=2)}")
 if __name__ == "__main__":
     main()
