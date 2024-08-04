@@ -2,19 +2,26 @@ class Jar:
     # Initialise cookie jar with capacity
     # If capacity is not a non-negative int, raise ValueError
     def __init__(self, capacity=12):
+        if not capacity > 0:
+            raise ValueError("Capacity not valid")
         self.capacity = capacity
+        self._size = 0
 
     # Return a string with 🍪 * number of cookies in the jar. 3 cookies == 🍪🍪🍪
     def __str__(self):
-        return f"🍪"
+        return f"🍪" * self.size
 
     # Add n cookies to the jar. If adding more than capacity, raise ValueError
     def deposit(self, n):
-        return (self.capacity + n)
+        if (self.size + n) > self.capacity:
+            raise ValueError("Too many cookies")
+        self.size += n
 
     # Remove n cookies from the jar. If n is higher than the cookies existing in the jar, raise ValueError
     def withdraw(self, n):
-        return (self.capacity - n)
+        if n > self.size:
+            raise ValueError("There are not enough cookies")
+        self.size -= n
 
     # Return jar's capacity
     @property
@@ -32,12 +39,17 @@ class Jar:
 
     @size.setter
     def size(self, size):
-        self._size = size
+        if size <= self._capacity:
+            self._size = size
 
 def main():
     jar = Jar()
-    print(f"{jar}")
+    print(jar)
+    jar.deposit(5)
+    print(jar)
+    jar.withdraw(2)
+    print(jar)
+
 
 if __name__ == "__main__":
     main()
-
