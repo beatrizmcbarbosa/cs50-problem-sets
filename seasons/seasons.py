@@ -10,22 +10,22 @@ def main():
     # Print birthday as minutes, using inflect method
     print(days_to_minutes(dob))
 
-def det_dob(s):
+def get_dob(s):
     # If birthday date is valid, convert to iso
     try:
         iso_date = date.fromisoformat(s)
     # If date is not valid, exit
     except:
         sys.exit("Invalid date")
-    # Return days
-    return (date.today - iso_date).day
 
+    return (date.today() - iso_date).days
 
-def days_to_minutes():
-    # Subtract birthday from today's date, using timedelta. Today's date is given by date class
-    ...
+def days_to_minutes(days):
+    minutes = 0
     # Convert days to minutes
-    ...
+    minutes = get_dob(days) * 60
+    # Return minutes as a string
+    return p.number_to_words(minutes)
 
 
 if __name__ == "__main__":
