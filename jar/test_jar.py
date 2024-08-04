@@ -17,8 +17,10 @@ def test_str():
 
 def test_deposit():
     jar = Jar()
-    assert jar.deposit(10) == 10
-    assert jar.deposit(1) == 11
+    jar.deposit(10)
+    assert jar.size == 10
+    jar.deposit(1)
+    assert jar.size == 11
     with pytest.raises(ValueError):
         assert jar.deposit(2)
 
@@ -26,6 +28,9 @@ def test_deposit():
 def test_withdraw():
     jar = Jar()
     jar.deposit(10)
-    assert jar.withdraw(10) == 0
+    jar.withdraw(9)
+    assert jar.size == 1
+    jar.withdraw(1)
+    assert jar.size == 0
     with pytest.raises(ValueError):
         assert jar.withdraw(1)
