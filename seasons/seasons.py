@@ -23,9 +23,9 @@ def get_dob(s):
 def days_to_minutes(days):
     minutes = 0
     # Convert days to minutes
-    minutes = get_dob(days) * 60
+    minutes = get_dob(days) * 24 * 60
     # Return minutes as a string
-    return p.number_to_words(minutes)
+    return f"{p.number_to_words(minutes)} minutes".capitalize().replace(" and", "")
 
 
 if __name__ == "__main__":
